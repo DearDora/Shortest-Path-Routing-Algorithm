@@ -1,0 +1,355 @@
+R1 sends an INIT_PDU: router_id 1
+R1 receives a CIRCUIT_DB: nbr_link 2 with links:
+    link link 1, cost 1
+    link link 5, cost 5
+
+R1 sends a HELLO_PDU: router_id 1, link_id 1
+R1 sends a HELLO_PDU: router_id 1, link_id 5
+R1 receives a HELLO_PDU: router_id 4, link_id 1
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> INF,inf
+R1 -> R5 -> INF,inf
+
+R1 sends a LS_PDU: sender 1, router_id 1, link_id 1, cost1, via1
+R1 sends a LS_PDU: sender 1, router_id 1, link_id 5, cost5, via1
+R1 receives a LS_PDU: sender 4, router_id 4, link_id 1, cost1, via1
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R4 nbr link 1
+R1 -> R4 link 1 cost 1
+
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> INF,inf
+
+R1 receives a LS_PDU: sender 4, router_id 4, link_id 2, cost2, via1
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R4 nbr link 2
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> INF,inf
+
+R1 receives a HELLO_PDU: router_id 5, link_id 5
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R4 nbr link 2
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> INF,inf
+
+R1 sends a LS_PDU: sender 1, router_id 1, link_id 1, cost1, via5
+R1 sends a LS_PDU: sender 1, router_id 1, link_id 5, cost5, via5
+R1 receives a LS_PDU: sender 4, router_id 4, link_id 6, cost6, via1
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+
+R1 sends a LS_PDU: sender 1, router_id 4, link_id 6, cost6, via5
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R5,5
+
+R1 receives a LS_PDU: sender 4, router_id 5, link_id 4, cost4, via1
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+R1 -> R5 nbr link 1
+R1 -> R5 link 4 cost 4
+
+R1 sends a LS_PDU: sender 1, router_id 5, link_id 4, cost4, via5
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R5,5
+
+R1 receives a LS_PDU: sender 5, router_id 5, link_id 4, cost4, via5
+R1 receives a LS_PDU: sender 5, router_id 5, link_id 7, cost7, via5
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+R1 -> R5 nbr link 2
+R1 -> R5 link 4 cost 4
+R1 -> R5 link 7 cost 7
+
+R1 sends a LS_PDU: sender 1, router_id 5, link_id 7, cost7, via1
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R5,5
+
+R1 receives a LS_PDU: sender 5, router_id 5, link_id 6, cost6, via5
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+R1 -> R5 nbr link 3
+R1 -> R5 link 4 cost 4
+R1 -> R5 link 7 cost 7
+R1 -> R5 link 6 cost 6
+
+R1 sends a LS_PDU: sender 1, router_id 5, link_id 6, cost6, via1
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R5,5
+
+R1 receives a LS_PDU: sender 5, router_id 5, link_id 5, cost5, via5
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+R1 -> R5 nbr link 4
+R1 -> R5 link 4 cost 4
+R1 -> R5 link 7 cost 7
+R1 -> R5 link 6 cost 6
+R1 -> R5 link 5 cost 5
+
+R1 sends a LS_PDU: sender 1, router_id 5, link_id 5, cost5, via1
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R5,5
+
+R1 receives a LS_PDU: sender 4, router_id 2, link_id 2, cost2, via1
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R2 nbr link 1
+R1 -> R2 link 2 cost 2
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+R1 -> R5 nbr link 4
+R1 -> R5 link 4 cost 4
+R1 -> R5 link 7 cost 7
+R1 -> R5 link 6 cost 6
+R1 -> R5 link 5 cost 5
+
+R1 sends a LS_PDU: sender 1, router_id 2, link_id 2, cost2, via5
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R4,3
+
+R1 receives a LS_PDU: sender 4, router_id 5, link_id 7, cost7, via1
+R1 receives a LS_PDU: sender 4, router_id 2, link_id 7, cost7, via1
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R2 nbr link 2
+R1 -> R2 link 2 cost 2
+R1 -> R2 link 7 cost 7
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+R1 -> R5 nbr link 4
+R1 -> R5 link 4 cost 4
+R1 -> R5 link 7 cost 7
+R1 -> R5 link 6 cost 6
+R1 -> R5 link 5 cost 5
+
+R1 sends a LS_PDU: sender 1, router_id 2, link_id 7, cost7, via5
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R4,3
+
+R1 receives a LS_PDU: sender 5, router_id 3, link_id 3, cost3, via5
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R2 nbr link 2
+R1 -> R2 link 2 cost 2
+R1 -> R2 link 7 cost 7
+R1 -> R3 nbr link 1
+R1 -> R3 link 3 cost 3
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+R1 -> R5 nbr link 4
+R1 -> R5 link 4 cost 4
+R1 -> R5 link 7 cost 7
+R1 -> R5 link 6 cost 6
+R1 -> R5 link 5 cost 5
+
+R1 sends a LS_PDU: sender 1, router_id 3, link_id 3, cost3, via1
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R4,3
+
+R1 receives a LS_PDU: sender 4, router_id 2, link_id 3, cost3, via1
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R2 nbr link 3
+R1 -> R2 link 2 cost 2
+R1 -> R2 link 7 cost 7
+R1 -> R2 link 3 cost 3
+R1 -> R3 nbr link 1
+R1 -> R3 link 3 cost 3
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+R1 -> R5 nbr link 4
+R1 -> R5 link 4 cost 4
+R1 -> R5 link 7 cost 7
+R1 -> R5 link 6 cost 6
+R1 -> R5 link 5 cost 5
+
+R1 sends a LS_PDU: sender 1, router_id 2, link_id 3, cost3, via5
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R4,3
+
+R1 receives a LS_PDU: sender 5, router_id 3, link_id 4, cost4, via5
+
+# Topology Database:
+R1 -> R1 nbr link 2
+R1 -> R1 link 1 cost 1
+R1 -> R1 link 5 cost 5
+R1 -> R2 nbr link 3
+R1 -> R2 link 2 cost 2
+R1 -> R2 link 7 cost 7
+R1 -> R2 link 3 cost 3
+R1 -> R3 nbr link 2
+R1 -> R3 link 3 cost 3
+R1 -> R3 link 4 cost 4
+R1 -> R4 nbr link 3
+R1 -> R4 link 1 cost 1
+R1 -> R4 link 2 cost 2
+R1 -> R4 link 6 cost 6
+R1 -> R5 nbr link 4
+R1 -> R5 link 4 cost 4
+R1 -> R5 link 7 cost 7
+R1 -> R5 link 6 cost 6
+R1 -> R5 link 5 cost 5
+
+R1 sends a LS_PDU: sender 1, router_id 3, link_id 4, cost4, via1
+
+# RIB:
+R1 -> R1 -> Local,0
+R1 -> R2 -> INF,inf
+R1 -> R3 -> INF,inf
+R1 -> R4 -> R4,1
+R1 -> R5 -> R4,3
+
+R1 receives a LS_PDU: sender 4, router_id 5, link_id 6, cost6, via1
+R1 receives a LS_PDU: sender 4, router_id 5, link_id 5, cost5, via1
+R1 receives a LS_PDU: sender 5, router_id 2, link_id 2, cost2, via5
+R1 receives a LS_PDU: sender 4, router_id 3, link_id 3, cost3, via1
+R1 receives a LS_PDU: sender 5, router_id 4, link_id 1, cost1, via5
+R1 receives a LS_PDU: sender 4, router_id 3, link_id 4, cost4, via1
+R1 receives a LS_PDU: sender 5, router_id 4, link_id 2, cost2, via5
+R1 receives a LS_PDU: sender 5, router_id 4, link_id 6, cost6, via5
+R1 receives a LS_PDU: sender 5, router_id 2, link_id 7, cost7, via5
+R1 receives a LS_PDU: sender 5, router_id 2, link_id 3, cost3, via5
+R1 receives a LS_PDU: sender 5, router_id 1, link_id 1, cost1, via5
+R1 receives a LS_PDU: sender 5, router_id 1, link_id 5, cost5, via5
